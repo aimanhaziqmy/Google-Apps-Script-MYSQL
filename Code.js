@@ -1,13 +1,13 @@
 function readSheet() {
    var doc = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('sheet1')
    doc.clear();
-  var conn = Jdbc.getConnection('jdbc:mysql://128.199.233.244:3306/test_IMAN', { user: 'tech', password: 'tech2022#' });
+  var conn = Jdbc.getConnection('jdbc:mysql://<yourAddress>:3306/test', { user: '<YourUserName>', password: '<YourPassword>' });
   if (!conn) {
     Logger.log('Connection error');
   }
     var stmt = conn.createStatement();
     var start = new Date();
-    var resultSet = stmt.executeQuery("SELECT * from testPurpose Where NumberOfSubscriber LIKE '32%'");
+    var resultSet = stmt.executeQuery("SELECT * from testPurpose");
     Logger.log(resultSet.getMetaData().getColumnCount())
     Logger.log(resultSet.getMetaData().getColumnName(1))
 
@@ -40,7 +40,7 @@ function readSheet() {
 }
 
 function writeSheet(){
-    var conn = Jdbc.getConnection('jdbc:mysql://128.199.233.244:3306/test_IMAN', { user: 'tech', password: 'tech2022#' });
+    var conn = Jdbc.getConnection('jdbc:mysql://<yourAddress>:3306/test', { user: '<YourUserName>', password: '<YourPassword>' });
     if(!conn){
       Logger.log("Connection error");
     }
@@ -58,7 +58,7 @@ function writeSheet(){
 }
 
 function deleteSheet(){
-  var conn = Jdbc.getConnection('jdbc:mysql://128.199.233.244:3306/test_IMAN', {user : 'tech', password: 'tech2022#'});
+  var conn = Jdbc.getConnection('jdbc:mysql://<yourAddress>:3306/test', { user: '<YourUserName>', password: '<YourPassword>' });
   if(!conn){
     Logger.log("Connection error");
   }
@@ -68,7 +68,5 @@ function deleteSheet(){
   stmt.close();
   var end = new Date();
   Logger.log('Time elapsed:' + (end.getTime() - start.getTime));
-
 }
-
 
